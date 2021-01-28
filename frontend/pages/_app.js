@@ -7,6 +7,7 @@ import { getStrapiMedia } from "utils/media";
 import { getStrapiURL, getGlobalData } from "utils/api";
 import Layout from "@/components/layout";
 import "@/styles/index.scss";
+import "rsuite/lib/styles/index.less"; // or 'rsuite/dist/styles/rsuite-default.css'
 
 import { Button } from "rsuite";
 
@@ -24,6 +25,8 @@ const MyApp = ({ Component, pageProps }) => {
         return <ErrorPage statusCode={404} />;
     }
     const { metadata } = global;
+
+    console.log("soooooooqaaaa", process.env.customKey);
 
     return (
         <>
