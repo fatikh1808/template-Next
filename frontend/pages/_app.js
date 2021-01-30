@@ -7,9 +7,37 @@ import { getStrapiMedia } from "utils/media";
 import { getStrapiURL, getGlobalData } from "utils/api";
 import Layout from "@/components/layout";
 import "@/styles/index.scss";
-import "rsuite/lib/styles/index.less"; // or 'rsuite/dist/styles/rsuite-default.css'
-
+// import "rsuite/lib/styles/index.less"; // or 'rsuite/dist/styles/rsuite-default.css'
 import { Button } from "rsuite";
+import { gql } from "@apollo/client";
+import {
+    ApolloClient,
+    ApolloProvider,
+    InMemoryCache,
+    HttpLink,
+} from "@apollo/client";
+
+const client = new ApolloClient({
+    link: new HttpLink({
+        uri: "https://gql-test.serafim.help/v1/graphql",
+        headers: {
+            "x-hasura-admin-secret": "password-for-hasura-test",
+        },
+    }),
+    cache: new InMemoryCache(),
+});
+
+client
+    .query({
+        query: gql`
+            query GetRates {
+                news {
+                    category_id
+                }
+            }
+        `,
+    })
+    .then((result) => console.log("news", result));
 
 const MyApp = ({ Component, pageProps }) => {
     // Prevent Next bug when it tries to render the [[...slug]] route
@@ -29,46 +57,48 @@ const MyApp = ({ Component, pageProps }) => {
     console.log("soooooooqaaaa", process.env.customKey);
 
     return (
-        <>
-            {/* Favicon */}
-            <Head>
-                <link
-                    rel="shortcut icon"
-                    href={getStrapiMedia(global.favicon.url)}
+        <ApolloProvider client={client}>
+            <>
+                {/* Favicon */}
+                <Head>
+                    <link
+                        rel="shortcut icon"
+                        href={getStrapiMedia(global.favicon.url)}
+                    />
+                </Head>
+                {/* Global site metadata */}
+                <DefaultSeo
+                    titleTemplate={`%s | ${global.metaTitleSuffix}`}
+                    title={"Page"}
+                    description={metadata.metaDescription}
+                    openGraph={{
+                        images: Object.values(metadata.shareImage.formats).map(
+                            (image) => {
+                                return {
+                                    url: getStrapiMedia(image.url),
+                                    width: image.width,
+                                    height: image.height,
+                                };
+                            }
+                        ),
+                    }}
+                    twitter={{
+                        cardType: metadata.twitterCardType,
+                        handle: metadata.twitterUsername,
+                    }}
                 />
-            </Head>
-            {/* Global site metadata */}
-            <DefaultSeo
-                titleTemplate={`%s | ${global.metaTitleSuffix}`}
-                title={"Page"}
-                description={metadata.metaDescription}
-                openGraph={{
-                    images: Object.values(metadata.shareImage.formats).map(
-                        (image) => {
-                            return {
-                                url: getStrapiMedia(image.url),
-                                width: image.width,
-                                height: image.height,
-                            };
-                        }
-                    ),
-                }}
-                twitter={{
-                    cardType: metadata.twitterCardType,
-                    handle: metadata.twitterUsername,
-                }}
-            />
-            {/* Display the content */}
-            <Layout global={global}>
-                <Button appearance="primary" href="https://rsuitejs.com/">
-                    Getting started
-                </Button>
-                <Component {...pageProps} />
-                <Button appearance="primary" href="https://rsuitejs.com/">
-                    Getting started
-                </Button>
-            </Layout>
-        </>
+                {/* Display the content */}
+                <Layout global={global}>
+                    <Button appearance="primary" href="https://rsuitejs.com/">
+                        Getting started
+                    </Button>
+                    <Component {...pageProps} />
+                    <Button appearance="primary" href="https://rsuitejs.com/">
+                        Getting started
+                    </Button>
+                </Layout>
+            </>
+        </ApolloProvider>
     );
 };
 
