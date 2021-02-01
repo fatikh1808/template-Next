@@ -22,6 +22,7 @@
     "less": "^4.1.0",
     "less-loader": "^7.3.0",
     "next": "^10.0.6",
+    "next-i18next": "^7.0.1",
     "next-seo": "^4.18.0",
     "npm": "^6.14.11",
     "postcss-nested": "^4.2.3",

@@ -16,6 +16,8 @@ import {
     InMemoryCache,
     HttpLink,
 } from "@apollo/client";
+import { i18n, withTranslation } from "../i18n";
+import { appWithTranslation } from "../i18n";
 
 const client = new ApolloClient({
     link: new HttpLink({
@@ -27,19 +29,19 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
 });
 
-client
-    .query({
-        query: gql`
-            query GetRates {
-                news {
-                    category_id
-                }
-            }
-        `,
-    })
-    .then((result) => console.log("news", result));
+// client
+//     .query({
+//         query: gql`
+//             query GetRates {
+//                 news {
+//                     category_id
+//                 }
+//             }
+//         `,
+//     })
+//     .then((result) => console.log("news", result));
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps, t }) => {
     // Prevent Next bug when it tries to render the [[...slug]] route
 
     const router = useRouter();
@@ -89,12 +91,26 @@ const MyApp = ({ Component, pageProps }) => {
                 />
                 {/* Display the content */}
                 <Layout global={global}>
-                    <Button appearance="primary" href="https://rsuitejs.com/">
-                        Getting started
+                    <Button
+                        onClick={() =>
+                            i18n.changeLanguage(
+                                i18n.language === "en" ? "de" : "en"
+                            )
+                        }
+                        appearance="primary"
+                    >
+                        {t("change-locale")}
                     </Button>
                     <Component {...pageProps} />
-                    <Button appearance="primary" href="https://rsuitejs.com/">
-                        Getting started
+                    <Button
+                        appearance="primary"
+                        onClick={() =>
+                            i18n.changeLanguage(
+                                i18n.language === "en" ? "de" : "en"
+                            )
+                        }
+                    >
+                        {t("change-locale")}
                     </Button>
                 </Layout>
             </>
@@ -115,4 +131,4 @@ MyApp.getInitialProps = async (ctx) => {
     return { ...appProps, pageProps: { global, path: ctx.pathname } };
 };
 
-export default MyApp;
+export default appWithTranslation(withTranslation("common")(MyApp));
