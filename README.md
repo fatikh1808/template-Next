@@ -110,3 +110,5 @@ And for the backend:
 - `FRONTEND_PREVIEW_SECRET`: token of Next.js preview mode defined on the frontend
 
 Have fun using this starter!
+# template-Next
+# template-Next
