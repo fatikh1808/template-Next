@@ -6,9 +6,9 @@ import { DefaultSeo } from "next-seo";
 import { getStrapiMedia } from "utils/media";
 import { getGlobalData } from "utils/api";
 import Layout from "@/components/layout";
-import "@/styles/index.scss";
-
 import { gql } from "@apollo/client";
+
+import "../styles/fonts/fontello/icons/css/hm-icons.css";
 
 import {
     ApolloClient,

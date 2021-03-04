@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'hm-icons';
+  src: url('../font/hm-icons.eot?86386513');
+  src: url('../font/hm-icons.eot?86386513#iefix') format('embedded-opentype'),
+       url('../font/hm-icons.woff2?86386513') format('woff2'),
+       url('../font/hm-icons.woff?86386513') format('woff'),
+       url('../font/hm-icons.ttf?86386513') format('truetype'),
+       url('../font/hm-icons.svg?86386513#hm-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'hm-icons';
+    src: url('../font/hm-icons.svg?86386513#hm-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="hm-"]:before, [class*=" hm-"]:before {
+  font-family: "hm-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.hm-eye:before { content: '\e800'; } /* '' */
+.hm-eye-off:before { content: '\e801'; } /* '' */
+.hm-cancel:before { content: '\e802'; } /* '' */
+.hm-forward:before { content: '\e803'; } /* '' */
+.hm-zoom-in:before { content: '\e804'; } /* '' */
+.hm-zoom-out:before { content: '\e805'; } /* '' */
+.hm-print:before { content: '\e806'; } /* '' */
+.hm-emo-happy:before { content: '\e807'; } /* '' */
+.hm-download:before { content: '\e808'; } /* '' */
+.hm-left-big:before { content: '\e809'; } /* '' */
+.hm-right-big:before { content: '\e80a'; } /* '' */
+.hm-resize-full-alt:before { content: '\f0b2'; } /* '' */
+.hm-reply:before { content: '\f112'; } /* '' */
