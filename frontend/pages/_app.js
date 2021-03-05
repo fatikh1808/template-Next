@@ -8,8 +8,6 @@ import { getGlobalData } from "utils/api";
 import Layout from "@/components/layout";
 import { gql } from "@apollo/client";
 
-import "../styles/fonts/fontello/icons/css/hm-icons.css";
-
 import {
     ApolloClient,
     ApolloProvider,
