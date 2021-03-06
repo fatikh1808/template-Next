@@ -7,4 +7,5 @@ module.exports = {
     publicRuntimeConfig: {
         localeSubpaths,
     },
+    sassOptions: {},
 };

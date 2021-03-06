@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import "./fonts/fontello/css/hm-icons.css";
+@import url("./test/style.scss");
 
 html {
     font-size: 13px;
